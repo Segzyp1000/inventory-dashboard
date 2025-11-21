@@ -1,6 +1,6 @@
 import Sidebar from "@/components/sidebar";
 
-// This file automatically displays while the data for app/inventory/page.tsx is loading.
+
 export default function InventoryLoading() {
   return (
     <div className="min-h-screen bg-gray-50">

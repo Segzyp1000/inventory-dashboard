@@ -21,7 +21,7 @@ export default async function SettingsPage() {
         </div>
 
         {/* Content Container for AccountSettings */}
-        <div className="max-w-7xl border-gray-200">
+        <div className="max-w-7xl border border-gray-200">
           <div className=" rounded-3xl shadow-2xl border border-gray-200 p-8 md:p-12 transform hover:shadow-3xl transition-all duration-300 ease-in-out">
             {/* The AccountSettings component from Stackframe */}
             {/* Note: Tailwind is available for styling the AccountSettings content through CSS isolation/global styles */}
