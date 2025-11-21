@@ -24,10 +24,10 @@ export default function Home() {
             </Link>
 
             <Link
-              href="*"
+              href="dashboard"
               className="bg-white text-purple-700 px-8 py-3 rounded-lg font-semibold border-2 border-purple-600 hover:bg-purple-100 transition-colors duration-200"
             >
-              Learn More
+              Click here to see Dashboard
             </Link>
           </div>
         </div>

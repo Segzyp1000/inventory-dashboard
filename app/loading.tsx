@@ -15,7 +15,7 @@ export default function InventoryLoading() {
           
           {/* Search Bar Skeleton */}
           <div className="mt-8 flex gap-2">
-            <div className="h-10 bg-gray-200 rounded-lg flex-grow animate-pulse"></div>
+            <div className="h-10 bg-gray-200 rounded-lg grow animate-pulse"></div>
             <div className="w-24 h-10 bg-purple-200 rounded-lg animate-pulse"></div>
           </div>
 
