@@ -50,7 +50,7 @@ export default async function AddProductPage() {
 
                      <div>
                     <label htmlFor="name" className="vlock text-sm font-medium text-gray-700 mb-2">LowStockAt(Optiomal) </label>
-                    <input type="number" id="LowStockAt" name="LowStockAt" min="0" 
+                    <input type="number" id="lowStockAt" name="lowStockAt" min="0" 
                     className="w-full px-4 py-2 border border-gray-200 text-gray-700 nrounded-lg text-sm focus:border-transparent"
                     placeholder="Enter low stck threshold" />
                     </div>

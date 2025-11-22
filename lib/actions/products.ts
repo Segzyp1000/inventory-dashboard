@@ -6,12 +6,12 @@ import {z} from "zod";
 import { redirect } from "next/navigation";
 
 // Define schema using conventional camelCase for object fields
-const ProductSchema = z.object({    
-    name: z.string().min(1, "Product name is required."),
-    quantity: z.number().min(0, "Quantity cannot be negative."),
-    price: z.number().min(0, "Price cannot be negative."),
-    sku: z.string().nullable().optional(), // SKU should be nullable if optional
-    lowStockAt: z.number().min(0, "Low stock threshold cannot be negative.").optional(),
+const ProductSchema = z.object({
+  name: z.string().min(1),
+  quantity: z.number().min(0),
+  price: z.number().min(0),
+  sku: z.string().nullable().optional(),
+  lowStockAt: z.number().min(0).optional()
 });
 
 /**
@@ -46,42 +46,32 @@ export async function deleteProduct(formData: FormData) {
 /**
  * Creates a new product from the submitted form data using Zod validation.
  */
-export async function createProduct(formData: FormData): Promise<{ success: boolean; message: string }> {
+export async function createProduct(formData: FormData) {
   const user = await getCurrentUser();
-  if (!user) {
-    return { success: false, message: "Authentication failed. Please log in again." };
-  }
+  if (!user) redirect("/login");
 
-  // Parse data ensuring correct type conversions
-  const dataToParse = {
+  const data = {
     name: formData.get("name"),
     quantity: Number(formData.get("quantity")),
     price: Number(formData.get("price")),
     sku: formData.get("sku") || null,
-    // Use the corrected camelCase name here: 'lowStockAt'
-    lowStockAt: formData.get("lowStockAt") ? Number(formData.get("lowStockAt")) : undefined,
+    lowStockAt: formData.get("lowStockAt")
+      ? Number(formData.get("lowStockAt"))
+      : undefined,
   };
 
-  const parseResult = ProductSchema.safeParse(dataToParse);
-
-  if (!parseResult.success) {
-    // If validation fails, extract the first error message to return to the user
-    const firstIssue = parseResult.error.issues[0];
-    return { 
-        success: false, 
-        message: `${String(firstIssue.path[0])}: ${firstIssue.message}` 
-    };
+  const parsed = ProductSchema.safeParse(data);
+  if (!parsed.success) {
+    console.log(parsed.error);
+    return;
   }
 
-  try {
-    await prisma.product.create({
-      data: { ...parseResult.data, userId: user.id },
-    });
-  } catch (error) {
-    console.error("Product creation failed:", error);
-    return { success: false, message: "Failed to create product due to a database error." };
-  }
+  await prisma.product.create({
+    data: {
+      ...parsed.data,
+      userId: user.id,
+    }
+  });
 
-  // Redirect on successful creation
-  redirect("/inventory?status=success&message=Product created successfully!");
+  redirect("/inventory");
 }
