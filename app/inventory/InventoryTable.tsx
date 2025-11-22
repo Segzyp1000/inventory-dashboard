@@ -149,9 +149,9 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
          <button
           onClick={() => setShowDeleteModal(product.id)}
           disabled={isDeleting}
-          className="text-red-600 hover:text-red-900 font-semibold disabled:opacity-50 transition"
+          className="text-red-500 hover:text-red-900 semibold disabled:opacity-50 transition"
          >
-          {isDeleting && showDeleteModal === product.id ? 'Deleting...' : 'Delete'}
+          {isDeleting && showDeleteModal === product.id ? 'Deleting...' : 'delete'}
          </button>
         </td>
        </tr>
