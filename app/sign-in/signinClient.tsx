@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { SignIn, useUser } from "@stackframe/stack"; 
 import Link from "next/link";
 
-export default function SignInPage() {
+export default function signinClient() {
   const router = useRouter();
   // Get the current user state
   const user = useUser(); 
@@ -30,21 +30,20 @@ export default function SignInPage() {
     );
   }
 
-  return (
+return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-purple-200 to-purple-300">
       <div className="bg-white shadow-2xl rounded-3xl p-8 md:p-10 w-full max-w-lg space-y-8 transform hover:shadow-3xl transition-all duration-300">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold text-purple-800 mb-2">Welcome Back</h1>
-          <p className="text-purple-600 font-medium">Sign in to manage your inventory</p>
+          <p className="text-purple-600 font-medium">Sign in or create a new account to manage your inventory</p>
         </div>
 
-        {/* Removed the redirectUrl prop, relying solely on the useEffect hook above 
-            to redirect to /dashboard when the user object becomes available. */}
+        {/* This usage is correct, assuming the package is installed: */}
         <SignIn />
 
         <div className="text-center pt-2">
           <Link
-            href="/dashboard"
+            href="/"
             className="inline-block text-purple-600 hover:text-purple-800 font-semibold transition-colors text-sm"
           >
             ← Go Back Home
