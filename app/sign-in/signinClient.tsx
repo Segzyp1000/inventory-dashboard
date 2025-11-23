@@ -24,14 +24,14 @@ export default function signinClient() {
   // If the user is currently loading or redirecting, don't show the form yet
   if (user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-purple-200 to-purple-300">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-purple-100 via-purple-200 to-purple-300">
         <div className="text-xl font-semibold text-purple-700">Redirecting to Dashboard...</div>
       </div>
     );
   }
 
 return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-purple-200 to-purple-300">
+    <div className="bg-gray-200 min-h-screen flex items-center justify-center bg-linear-to-br from-purple-100 via-purple-200 to-purple-300">
       <div className="bg-white shadow-2xl rounded-3xl p-8 md:p-10 w-full max-w-lg space-y-8 transform hover:shadow-3xl transition-all duration-300">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold text-purple-800 mb-2">Welcome Back</h1>
