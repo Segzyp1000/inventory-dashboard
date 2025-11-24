@@ -22,10 +22,10 @@ export async function createProduct(formData: FormData) {
   if (!user) redirect("/login");
 
   const data = {
-    name: formData.get("name"),
+    name: formData.get("name") as string,
     quantity: Number(formData.get("quantity")),
     price: Number(formData.get("price")),
-    sku: formData.get("sku") || null,
+    sku: (formData.get("sku") as string) || null,
     lowStockAt: formData.get("lowStockAt")
       ? Number(formData.get("lowStockAt"))
       : undefined,
@@ -33,7 +33,8 @@ export async function createProduct(formData: FormData) {
 
   const parsed = ProductSchema.safeParse(data);
   if (!parsed.success) {
-    console.log(parsed.error);
+    console.error(parsed.error);
+    // ❌ This must NOT return anything
     return;
   }
 
@@ -44,7 +45,7 @@ export async function createProduct(formData: FormData) {
     },
   });
 
-  redirect("/inventory");
+  redirect("/inventory"); // ✔️ allowed
 }
 
 // ----------------------------
