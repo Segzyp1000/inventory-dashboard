@@ -1,4 +1,4 @@
-import { PrismaClient } from "../app/generated/prisma/index.js";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -32,27 +32,25 @@ const PRODUCT_NAMES = [
 
 async function main() {
   const demoUserId = "03f1deb4-3fbc-41cc-8397-f741371fff18";
-  
-  // Ensure the list has the correct length
+
   if (PRODUCT_NAMES.length !== 25) {
-      console.error("Error: PRODUCT_NAMES list must contain exactly 25 items.");
-      process.exit(1);
+    console.error("Error: PRODUCT_NAMES list must contain exactly 25 items.");
+    process.exit(1);
   }
 
-  // Seed the database with initial data
   await prisma.product.createMany({
     data: Array.from({ length: 25 }).map((_, i) => ({
       userId: demoUserId,
-      name: PRODUCT_NAMES[i], // 👈 Using specific product names
-      price: (Math.random() * 90 + 10).toFixed(2),
+      name: PRODUCT_NAMES[i],
+      price: Number((Math.random() * 90 + 10).toFixed(2)), // <-- Prisma expects number, not string
       quantity: Math.floor(Math.random() * 20) + 1,
       lowStockAt: 5,
       createdAt: new Date(Date.now() - i * 1000 * 60 * 60 * 24),
     })),
     skipDuplicates: true,
   });
+
   console.log("Seed data created successfully");
-  console.log(`Created 25 unique products for user ID: ${demoUserId}`);
 }
 
 main()
