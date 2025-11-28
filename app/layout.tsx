@@ -17,30 +17,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ShelfSync - Inventory Management",
   description: "A simple inventory management application built with Next.js",
+
   icons: {
-    // Standard favicon using PNG format
-    icon: {
-      url: '/logo.png',
-      type: 'image/png',
-    },
-    // Shortcut icon (common for older browsers)
-    shortcut: {
-      url: '/logo.png',
-      type: 'image/png',
-    },
-    // Apple touch icon for mobile home screens
-    apple: {
-      url: '/logo.png',
-      sizes: '180x180',
-    },
-    // Optional: ICO file path if you have one, often best for compatibility
-    // other: [
-    //   {
-    //     rel: 'icon',
-    //     url: '/favicon.ico',
-    //     type: 'image/x-icon',
-    //   },
-    // ],
+    icon: [
+      // Standard browser favicon (.ico format → required!)
+      { url: "/favicon.ico" },
+
+      // Optional PNG favicon
+      { url: "/logo.png", type: "image/png" },
+    ],
+
+    // Apple devices (home screen icons)
+    apple: [
+      { url: "/logo.png", sizes: "180x180", type: "image/png" },
+    ],
+
+    // Shortcut icon
+    shortcut: [
+      { url: "/favicon.ico" },
+    ],
   },
 };
 
@@ -53,9 +48,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      ><StackProvider app={stackClientApp}><StackTheme>
-        {children}
-      </StackTheme></StackProvider></body>
+      >
+        <StackProvider app={stackClientApp}>
+          <StackTheme>
+            {children}
+          </StackTheme>
+        </StackProvider>
+      </body>
     </html>
   );
 }

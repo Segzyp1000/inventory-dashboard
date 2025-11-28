@@ -1,4 +1,4 @@
-import Sidebar from "@/components/sidebar";
+import AppLayout from "@/components/AppLayout";
 import { getCurrentUser } from "@/lib/auth";
 import { AccountSettings } from "@stackframe/stack";
 
@@ -6,14 +6,8 @@ export default async function SettingsPage() {
   // Assuming getCurrentUser is a server function
   const user = await getCurrentUser(); 
 
-  return (
-    // Outer container provides the full-screen gradient background
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200">
-      <Sidebar currentPath="/settings" />
-
-      {/* Main content area, offset by the sidebar width (ml-64) */}
-      <main className="ml-64 p-8 md:p-10">
-        
+  return (    
+      <AppLayout currentPath="/settings" >
         {/* Header - Uses dark text for high contrast against the light background */}
         <div className="mb-10">
           <h1 className="text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
@@ -32,7 +26,6 @@ export default async function SettingsPage() {
             <AccountSettings fullPage />
           </div>
         </div>
-      </main>
-    </div>
+      </AppLayout>
   );
 }

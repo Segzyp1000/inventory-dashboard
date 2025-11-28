@@ -1,4 +1,4 @@
-import Sidebar from "@/components/sidebar";
+import AppLayout from "@/components/AppLayout";
 import { createProduct } from "@/lib/actions/products";
 import { getCurrentUser } from "@/lib/auth";
 import Link from "next/link";
@@ -7,9 +7,9 @@ export default async function AddProductPage() {
   const user = await getCurrentUser();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Sidebar currentPath="/add-product" />
-      <main className="ml-64 p-8">
+    
+      <AppLayout currentPath="/add-product" >
+      
 
         <div className="text-2xl font-semibold mb-4 text-gray-800">
           <h1>Add Product</h1>
@@ -129,8 +129,7 @@ export default async function AddProductPage() {
             </form>
           </div>
         </div>
-
-      </main>
-    </div>
+      </AppLayout>
+    
   );
 }

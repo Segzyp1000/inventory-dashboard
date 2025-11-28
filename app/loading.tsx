@@ -1,11 +1,10 @@
-import Sidebar from "@/components/sidebar";
+import AppLayout from "@/components/AppLayout";
 
 
 export default function InventoryLoading() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Sidebar currentPath="/inventory" />
-      <main className="ml-64 p-8">
+    
+      <AppLayout currentPath="/inventory">
         <div className="mb-8">
           {/* Animated Header Placeholder */}
           <div className="animate-pulse">
@@ -49,7 +48,7 @@ export default function InventoryLoading() {
             </div>
           </div>
         </div>
-      </main>
-    </div>
+        </AppLayout>
+      
   );
 }
