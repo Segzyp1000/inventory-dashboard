@@ -179,14 +179,15 @@ export default async function DashboardPage() {
                       title={stockLabel[stockLevel]}
                     />
                     {product.name}
-                  </div>
+                 
                   <span
                     className={`text-sm font-medium ${textColor[stockLevel]}`}
                   >
                     {product.quantity === 0
                       ? "out of stock"
                       : `${product.quantity} in stock`}
-                  </span>
+                  </span> 
+                   </div>
                   <span className="text-gray-500 text-xs">
                     {new Date(product.createdAt).toLocaleDateString()}
                   </span>

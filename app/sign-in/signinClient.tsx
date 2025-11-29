@@ -1,55 +1,82 @@
 "use client";
 
-import { useEffect } from "react";
+import {  useState} from "react";
 import { useRouter } from "next/navigation";
-// Import useUser from @stackframe/stack for checking existing session
-import { SignIn, useUser } from "@stackframe/stack"; 
+import { SignIn, SignUp, useUser } from "@stackframe/stack";
 import Link from "next/link";
 
-export default function signinClient() {
-  const router = useRouter();
-  // Get the current user state
-  const user = useUser(); 
+export default function SigninClient() {
+ const router = useRouter();
+ const user = useUser();
+ const [mode, setMode] = useState<"signin" | "signup">("signin");
 
-  // Manual redirect check for users who are already signed in
-  useEffect(() => {
-    // If user is defined (already signed in or just successfully signed in), 
-    // redirect them to the /dashboard page.
-    if (user) {
-      router.replace("/dashboard"); 
-    }
-    // Dependency array ensures this runs when the user object changes
-  }, [user, router]);
-  
-  // If the user is currently loading or redirecting, don't show the form yet
-  if (user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-purple-100 via-purple-200 to-purple-300">
-        <div className="text-xl font-semibold text-purple-700">Redirecting to Dashboard...</div>
-      </div>
-    );
-  }
 
-return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-purple-100 via-purple-200 to-purple-300">
-      <div className="bg-white shadow-2xl rounded-3xl p-8 md:p-10 w-full max-w-lg space-y-8 transform hover:shadow-3xl transition-all duration-300">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-purple-800 mb-2">Welcome Back</h1>
-          <p className="text-purple-600 font-medium">Sign in or create a new account to manage your inventory</p>
-        </div>
+ // derived flag — true when user object exists
+ const isAuthenticated = !!user;
 
-        {/* This usage is correct, assuming the package is installed: */}
-        <SignIn />
 
-        <div className="text-center pt-2">
-          <Link
-            href="/"
-            className="inline-block text-purple-600 hover:text-purple-800 font-semibold transition-colors text-sm"
-          >
-            ← Go Back Home
-          </Link>
-        </div>
-      </div>
+ // Handler for proceed button
+ function handleProceed() {
+  // extra safety: double-check authentication before routing
+  if (!isAuthenticated) return;
+  router.replace("/dashboard");
+ }
+
+ return (
+  <div className="min-h-screen text-gray-800 flex items-center justify-center bg-linear-to-br from-purple-100 via-purple-200 to-purple-300 p-4">
+   <div className="bg-white shadow-2xl rounded-3xl p-6 md:p-10 w-full max-w-lg space-y-6 transition-all duration-300">
+    {/* Header */}
+    <div className="text-center">
+     <h1 className="text-3xl md:text-4xl font-extrabold text-purple-800 mb-1">
+      {mode === "signin" ? "Welcome Back" : "Create Account"}
+     </h1>
+     <p className="text-purple-600 font-medium">
+      {mode === "signin"
+       ? "Sign in to manage your inventory."
+       : "Sign up to get started."}
+     </p>
     </div>
-  );
+
+    {/* Toggle */}
+    <div className="flex justify-center gap-3">
+     <button
+      onClick={() => setMode("signin")}
+      className={`px-4 py-2 rounded-lg font-semibold transition ${
+       mode === "signin" ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-700"
+      }`}
+      aria-pressed={mode === "signin"}
+     >
+      Sign In
+     </button>
+
+     <button
+      onClick={() => setMode("signup")}
+      className={`px-4 py-2 rounded-lg font-semibold transition ${
+       mode === "signup" ? "bg-purple-600 text-white" : "bg-purple-100 text-purple-700"
+      }`}
+      aria-pressed={mode === "signup"}
+     >
+      Sign Up
+     </button>
+    </div>
+
+    {/* Stack Auth UI */}
+    <div>
+     {mode === "signin" ? <SignIn /> : <SignUp />}
+    </div>
+
+ 
+
+    {/* Footer link */}
+    <div className="text-center pt-3">
+     <Link
+      href="/"
+      className="inline-block text-purple-600 hover:text-purple-800 font-semibold transition-colors text-sm"
+     >
+      ← Go Back Home
+     </Link>
+    </div>
+   </div>
+  </div>
+ );
 }
