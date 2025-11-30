@@ -38,7 +38,7 @@ export default function SigninClient() {
     </div>
 
     {/* Toggle */}
-    <div className="flex justify-center gap-3">
+    {/* <div className="flex justify-center gap-3">
      <button
       onClick={() => setMode("signin")}
       className={`px-4 py-2 rounded-lg font-semibold transition ${
@@ -58,7 +58,7 @@ export default function SigninClient() {
      >
       Sign Up
      </button>
-    </div>
+    </div> */}
 
     {/* Stack Auth UI */}
     <div>
