@@ -56,7 +56,7 @@ export default function AppLayout({ children, currentPath }: AppLayoutProps) {
             */}
             <main 
                 className={`
-                    min-h-screen bg-gray-50 ml-10 flex-1 transition-all duration-300 ease-in-out p-8 
+                    min-h-screen bg-gray-50 flex-1 transition-all duration-300 ease-in-out p-8 
                     ${desktopMarginClass}
                 `}
             >

@@ -72,9 +72,9 @@ export default function Sidebar({
   // The w-20 sidebar is 5rem. left-24 (6rem) puts the button just outside the open sidebar.
   const mobileButtonOpenClass = isMobile
     ? mobileOpen
-      ? "left-24"
-      : "left-4"
-    : "left-4";
+      ? "right-4"
+      : "right-4"
+    : "right-4";
 
   return (
     <>
