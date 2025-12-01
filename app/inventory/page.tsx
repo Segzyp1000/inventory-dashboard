@@ -19,9 +19,9 @@ export default async function InventoryPage() {
 
   return (
       <AppLayout currentPath="/inventory" >
-        <div  className="text-2xl font-semibold mb-4 text-gray-800">
-        <h1>Inventory</h1>
-        <p className="text-sm font-light">Manage your product and track inventory</p>
+        <div  className="mb-4 text-gray-800">
+        <h1 className="text-3xl font-semibold ">Inventory</h1>
+        <p className="text-md">Manage your product and track inventory</p>
         </div>
         <div className="bg-white border rounded-lg p-4">
           <InventoryTable initialProducts={products} />
