@@ -83,7 +83,7 @@ export default function Sidebar({
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Toggle menu"
       >
-        {mobileOpen ? <X className="w-5 h-6" /> : <Menu className="w-5 h-6" />}
+        {mobileOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
       </button>
 
       {/* Mobile Overlay - Closes menu when clicked outside */}
