@@ -113,7 +113,7 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
     </th>
 
     {/* Hide on mobile */}
-    <th className="hiddend:table-cell px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+    <th className="hidden md:table-cell  px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
       SKU
     </th>
 

@@ -20,8 +20,8 @@ export default async function InventoryPage() {
   return (
       <AppLayout currentPath="/inventory" >
         <div  className="mb-4 text-gray-800">
-        <h1 className="text-3xl font-semibold ">Inventory</h1>
-        <p className="text-md">Manage your product and track inventory</p>
+        <h1 className="md:text-2xl text-1xl font-semibold ">Inventory</h1>
+        <p className="text-[10px] md:text-[16px]">Manage your product and track inventory</p>
         </div>
         <div className="bg-white border rounded-lg p-4">
           <InventoryTable initialProducts={products} />

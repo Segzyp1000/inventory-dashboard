@@ -10,10 +10,10 @@ export default async function SettingsPage() {
       <AppLayout currentPath="/settings" >
         {/* Header - Uses dark text for high contrast against the light background */}
         <div className="mb-10">
-          <h1 className="text-3xl font-semibold text-gray-900 tracking-tight leading-tight">
+          <h1 className="md:text-2xl text-1xl font-semibold text-gray-900 tracking-tight leading-tight">
             Settings
           </h1>
-          <p className="mt-3 text-md text-gray-600 max-w-2xl">
+          <p className="mt-3 md:text-[16px] text-[10px] text-gray-600 max-w-2xl">
             Manage your account settings and preferences.
           </p>
         </div>

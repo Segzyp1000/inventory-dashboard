@@ -11,9 +11,9 @@ export default async function AddProductPage() {
       <AppLayout currentPath="/add-product" >
       
 
-        <div className="text-2xl font-semibold mb-4 text-gray-800">
-          <h1>Add Product</h1>
-          <p className="text-sm font-light">
+        <div className=" mb-4 text-gray-800">
+          <h1 className="md:text-2xl text-1xl font-semibold">Add Product</h1>
+          <p className="text-sm font-light text-[10px] md:text-[16px] ">
             Use the form below to add a new product to your inventory.
           </p>
         </div>
@@ -110,7 +110,7 @@ export default async function AddProductPage() {
                 />
               </div>
 
-              <div className="flex gap-5">
+              <div className="flex  flex-wrap gap-5">
                 <button
                   type="submit"
                   className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
