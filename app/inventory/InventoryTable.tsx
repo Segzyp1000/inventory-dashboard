@@ -106,57 +106,83 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
    {/* Table */}
    <div className="overflow-hidden border rounded-lg shadow-sm bg-white">
     <table className="w-full text-gray-800">
-     <thead className="bg-gray-100 border-b border-gray-300">
-      <tr>
-       <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
-        Name
-       </th>
-       <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
-        SKU
-       </th>
-       <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
-        Price
-       </th>
-       <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
-        Qty
-       </th>
-       <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
-        Low Stock
-       </th>
-       <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
-        Actions
-       </th>
-      </tr>
-     </thead>
+    <thead className="bg-gray-100 border-b border-gray-300">
+  <tr>
+    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+      Name
+    </th>
 
-     <tbody>
-      {paginated.map((product: Product, index: number) => (
-       <tr
-        key={product.id}
-        className={`transition border-b border-gray-200 ${
-         index % 2 === 0 ? "bg-white" : "bg-gray-50"
-        } hover:bg-purple-50`}
-       >
-        <td className="px-6 py-4 font-medium">{product.name}</td>
-        <td className="px-6 py-4">{product.sku || "-"}</td>
-        <td className="px-6 py-4">
-         {/* FIX: Use Number(product.price) and toFixed(2) to handle Decimal/string conversion */}
-         ${Number(product.price).toFixed(2)}
-        </td>
-        <td className="px-6 py-4">{product.quantity}</td>
-        <td className="px-6 py-4">{product.lowStockAt}</td>
-        <td className="px-6 py-4">
-         <button
+    {/* Hide on mobile */}
+    <th className="hiddend:table-cell px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+      SKU
+    </th>
+
+    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+      Price
+    </th>
+
+    {/* Hide on mobile */}
+    <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+      Qty
+    </th>
+
+    {/* Hide on mobile */}
+    <th className="hidden md:table-cell px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+      Low Stock
+    </th>
+
+    <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide">
+      Actions
+    </th>
+  </tr>
+</thead>
+
+    <tbody>
+  {paginated.map((product, index) => (
+    <tr
+      key={product.id}
+      className={`transition border-b border-gray-200 ${
+        index % 2 === 0 ? "bg-white" : "bg-gray-50"
+      } hover:bg-purple-50`}
+    >
+      {/* Always visible */}
+      <td className="px-6 py-4 font-medium">{product.name}</td>
+
+      {/* Hidden on mobile */}
+      <td className="hidden md:table-cell px-6 py-4">
+        {product.sku || "-"}
+      </td>
+
+      {/* Always visible */}
+      <td className="px-6 py-4">
+        ${Number(product.price).toFixed(2)}
+      </td>
+
+      {/* Hidden on mobile */}
+      <td className="hidden md:table-cell px-6 py-4">
+        {product.quantity}
+      </td>
+
+      {/* Hidden on mobile */}
+      <td className="hidden md:table-cell px-6 py-4">
+        {product.lowStockAt}
+      </td>
+
+      {/* Always visible */}
+      <td className="px-6 py-4">
+        <button
           onClick={() => setShowDeleteModal(product.id)}
           disabled={isDeleting}
           className="text-red-500 hover:text-red-900 semibold disabled:opacity-50 transition"
-         >
-          {isDeleting && showDeleteModal === product.id ? 'Deleting...' : 'delete'}
-         </button>
-        </td>
-       </tr>
-      ))}
-     </tbody>
+        >
+          {isDeleting && showDeleteModal === product.id
+            ? "Deleting..."
+            : "x"}
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
     </table>
 
     {filteredProducts.length === 0 && (

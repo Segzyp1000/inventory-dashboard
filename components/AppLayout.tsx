@@ -14,18 +14,14 @@ const MD_BREAKPOINT = 768;
 export default function AppLayout({ children, currentPath }: AppLayoutProps) {
     const [isMobile, setIsMobile] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false); // State for desktop collapse (w-64 <-> w-20)
-    const [mobileOpen, setMobileOpen] = useState(false); // State for mobile menu visibility
+     // State for mobile menu visibility
 
     useEffect(() => {
         const handleResize = () => {
             const currentIsMobile = window.innerWidth < MD_BREAKPOINT;
             setIsMobile(currentIsMobile);
             
-            // Critical: If we resize from mobile to desktop, close the mobile menu
-            // to ensure it doesn't block the screen unnecessarily.
-            if (!currentIsMobile) {
-                setMobileOpen(false); 
-            }
+      
         };
         
         handleResize();
@@ -45,8 +41,7 @@ export default function AppLayout({ children, currentPath }: AppLayoutProps) {
                 isCollapsed={isCollapsed}
                 setIsCollapsed={setIsCollapsed}
                 isMobile={isMobile}
-                mobileOpen={mobileOpen}
-                setMobileOpen={setMobileOpen}
+             
             />
             
             {/* Main content area: 
@@ -56,8 +51,7 @@ export default function AppLayout({ children, currentPath }: AppLayoutProps) {
             */}
             <main 
                 className={`
-                    min-h-screen bg-gray-50 flex-1 transition-all duration-300 ease-in-out p-8 
-                    ${desktopMarginClass}
+                    min-h-screen bg-gray-50 flex-1 transition-all duration-300 ease-in-out p-8  ml-16  ${desktopMarginClass}
                 `}
             >
                 {children}
