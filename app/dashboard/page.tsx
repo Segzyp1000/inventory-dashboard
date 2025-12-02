@@ -115,10 +115,10 @@ export default async function DashboardPage() {
     // 2. The children of AppLayout are automatically rendered inside its dynamically margined <main> tag
     <AppLayout currentPath="/dashboard">
       <header className="mb-8">
-        <h1 className="md:text-2xl text-1xl font-semibold text-gray-900 mb-2">
+        <h1 className="md:text-3xl text-2xl font-semibold text-gray-900 mb-2">
          Inventory Dashboard
         </h1>
-        <p className="text-gray-600 md:text-[16px] text-[10px] ">
+        <p className="text-gray-600 text-[14px] md:text-[18px] ">
           Welcome back! Here is an overview of your inventory metrics and
           recent activity.
         </p>

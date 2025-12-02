@@ -12,8 +12,8 @@ export default async function AddProductPage() {
       
 
         <div className=" mb-4 text-gray-800">
-          <h1 className="md:text-2xl text-1xl font-semibold">Add Product</h1>
-          <p className="text-sm font-light text-[10px] md:text-[16px] ">
+          <h1 className="md:text-3xl text-2xl font-semibold">Add Product</h1>
+          <p className="text-sm font-light text-[14px] md:text-[18px] ">
             Use the form below to add a new product to your inventory.
           </p>
         </div>
