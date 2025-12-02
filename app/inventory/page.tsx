@@ -2,6 +2,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import InventoryTable from "./InventoryTable";
 import AppLayout from "@/components/AppLayout";
+import Link from "next/link";
 
 export default async function InventoryPage() {
   const user = await getCurrentUser();
@@ -21,7 +22,12 @@ export default async function InventoryPage() {
       <AppLayout currentPath="/inventory" >
         <div  className="mb-4 text-gray-800">
         <h1 className="md:text-2xl text-1xl font-semibold ">Inventory</h1>
+        <span>
         <p className="text-[10px] md:text-[16px]">Manage your product and track inventory</p>
+        <Link href="/add-product">
+        <button className="bg-gray-800 text-gray-200 p-1 text-[10px] md:text-[16px]  rounded-lg ">Add product</button>
+        </Link>
+        </span>
         </div>
         <div className="bg-white border rounded-lg p-4">
           <InventoryTable initialProducts={products} />

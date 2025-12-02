@@ -198,7 +198,7 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
      <button
       disabled={page === 1}
       onClick={() => setPage((p) => p - 1)}
-      className="px-3 py-1 border border-gray-300 text-gray-900 rounded-md bg-white
+      className="md:block hidden px-3 py-1 border border-gray-300 text-gray-900 rounded-md bg-white
       hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition"
      >
       Previous
@@ -222,7 +222,7 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
      <button
       disabled={page === totalPages}
       onClick={() => setPage((p) => p + 1)}
-      className="px-3 py-1 border border-gray-300 rounded-md text-gray-900 bg-white
+      className="md:block hidden  px-3 py-1 border border-gray-300 rounded-md text-gray-900 bg-white
       hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition"
      >
       Next

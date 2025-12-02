@@ -35,8 +35,15 @@ type SidebarProps = {
 };
 
 // Tooltip style
-const tooltipStyle =
-  "absolute left-full top-1/2 -translate-y-1/2 ml-4 px-3 py-1 bg-gray-800 text-xs text-white rounded-lg shadow-xl opacity-0 pointer-events-none transition-opacity duration-200 whitespace-nowrap group-hover:opacity-100";
+const tooltipStyle = `
+  absolute left-full top-1/2 -translate-y-1/2 ml-3 
+  px-3 py-1 rounded-md text-xs whitespace-nowrap 
+  bg-black/90 backdrop-blur-sm text-white shadow-lg
+  opacity-0 translate-x-2 pointer-events-none 
+  transition-all duration-150 
+  group-hover:opacity-100 group-hover:translate-x-0
+`;
+
 
 export default function Sidebar({
   currentPath,

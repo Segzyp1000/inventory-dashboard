@@ -116,7 +116,7 @@ export default async function DashboardPage() {
     <AppLayout currentPath="/dashboard">
       <header className="mb-8">
         <h1 className="md:text-2xl text-1xl font-semibold text-gray-900 mb-2">
-         Dashboard
+         Inventory Dashboard
         </h1>
         <p className="text-gray-600 md:text-[16px] text-[10px] ">
           Welcome back! Here is an overview of your inventory metrics and
