@@ -181,7 +181,7 @@ export default async function DashboardPage() {
                     {product.name}
                  
                   <span
-                    className={`text-sm font-medium ${textColor[stockLevel]}`}
+                    className={`md:block hidden text-sm font-medium ${textColor[stockLevel]}`}
                   >
                     {product.quantity === 0
                       ? "out of stock"
