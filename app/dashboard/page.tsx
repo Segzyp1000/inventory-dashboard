@@ -1,18 +1,21 @@
 import AppLayout from "@/components/AppLayout";
 import { getCurrentUser } from "@/lib/auth";
 import ProductChart from "@/components/product-chat";
+import StockLevelBarChart from "@/components/StockLevelBarChart"
+import MonthlyValueAreaChart from "@/components/MonthlyValueAreaChart"
 import { prisma } from "@/lib/prisma";
 import { Package, BarChart3 } from "lucide-react"; // Removed Settings import
 
+
 // Define the shape of the data returned from Prisma
-interface ProductData {
-  id: string;
-  name: string;
-  price: string | number;
-  quantity: number;
-  createdAt: Date;
-  lowStockAt?: number;
-}
+// interface ProductData {
+//   id: string;
+//   name: string;
+//   price: string | number;
+//   quantity: number;
+//   createdAt: Date;
+//   lowStockAt?: number;
+// }
 
 // Metric Card Component
 interface MetricCardProps {
@@ -21,6 +24,13 @@ interface MetricCardProps {
   icon: React.ReactElement;
   description: string;
 }
+
+// interface  StockLevelBarChart  {
+//   price: string | number;
+//   quantity: number;
+//   lowStockAt?: number;
+//   p?: number;
+// }
 
 function MetricCard({ title, value, icon, description }: MetricCardProps) {
   return (
@@ -53,7 +63,7 @@ export default async function DashboardPage() {
 
   const allProducts = await prisma.product.findMany({
     where: { userId },
-    select: { price: true, quantity: true, createdAt: true },
+    select: { price: true, quantity: true, createdAt: true,  lowStockAt: true },
   });
 
   const recent = await prisma.product.findMany({
@@ -109,6 +119,49 @@ export default async function DashboardPage() {
       products: weekProducts.length,
     });
   }
+
+  const stockLevelData = [
+  {
+    name: "Out of Stock",
+    count: allProducts.filter((p) => p.quantity === 0).length,
+  },
+  {
+    name: "Low Stock (≤5)",
+    count: allProducts.filter((p) => p.quantity > 0 && p.quantity <= (p.lowStockAt || 5)).length,
+  },
+  {
+    name: "In Stock",
+    count: allProducts.filter((p) => p.quantity > (p.lowStockAt || 5)).length,
+  },
+];
+
+// Build monthly inventory value dataset
+const monthlyValueData: { month: string; value: number }[] = [];
+
+
+// Loop through last 12 months
+for (let i = 11; i >= 0; i--) {
+  const monthDate = new Date(now.getFullYear(), now.getMonth() - i, 1);
+  const monthLabel = monthDate.toLocaleString("default", { month: "short", year: "2-digit" });
+
+  // Filter products created in this month
+  const monthProducts = allProducts.filter((p) => {
+    const created = new Date(p.createdAt);
+    return (
+      created.getMonth() === monthDate.getMonth() &&
+      created.getFullYear() === monthDate.getFullYear()
+    );
+  });
+
+  // Sum total value for this month
+  const monthValue = monthProducts.reduce(
+    (sum, product) => sum + Number(product.price) * Number(product.quantity),
+    0
+  );
+
+  monthlyValueData.push({ month: monthLabel, value: monthValue });
+}
+
 
   return (
     // 1. AppLayout now provides the main container, min-h-screen, and background
@@ -208,6 +261,33 @@ export default async function DashboardPage() {
             <ProductChart data={weeklyProductData} />
           </div>
         </div>
+
+
+        <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 flex flex-col justify-between h-full min-h-[250px]">
+          <div className="w-full mb-4">
+            <p className="text-sm text-gray-400 font-medium">
+              Product Level
+            </p>
+          </div>
+
+          <div className="w-full flex-1 flex items-center justify-center">
+           <StockLevelBarChart data={stockLevelData} />
+
+          </div>
+
+         
+        </div>
+         <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 flex flex-col justify-between h-full min-h-[250px]">
+  <div className="w-full mb-4">
+    <p className="text-sm text-gray-400 font-medium">
+      Monthly Inventory Value Added
+    </p>
+  </div>
+
+  <div className="w-full flex-1 flex items-center justify-center">
+    <MonthlyValueAreaChart data={monthlyValueData} />
+  </div>
+</div>
       </div>
     </AppLayout>
   );

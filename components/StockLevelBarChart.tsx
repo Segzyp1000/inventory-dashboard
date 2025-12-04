@@ -11,16 +11,19 @@ import {
 } from "recharts";
 
 interface StockLevelData {
-  name: string; // e.g., 'Out of Stock (0)'
-  count: number;
+  name: string;  // e.g., 'Out of Stock'
+  count: number; // number of products
 }
 
-// Define specific colors for consistency
-const COLORS = ["#ef4444", "#facc15", "#3b82f6", "#10b981"]; // Red, Yellow, Blue, Green
+// Softer pastel-like colors
+const COLORS = [
+  "#fecaca", // light red
+  "#fef08a", // light yellow
+  "#bfdbfe", // light blue
+  "#a7f3d0", // light green
+];
 
 export default function StockLevelBarChart({ data }: { data: StockLevelData[] }) {
-  
-  // Custom tooltip to display count
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
@@ -43,32 +46,33 @@ export default function StockLevelBarChart({ data }: { data: StockLevelData[] })
           margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
           layout="vertical"
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" horizontal={false} />
-          <XAxis 
-            type="number" 
-            stroke="#666" 
-            fontSize={12} 
-            tickLine={false} 
-            axisLine={false} 
+          <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" horizontal={false} />
+          <XAxis
+            type="number"
+            stroke="#9ca3af"
+            fontSize={12}
+            tickLine={false}
+            axisLine={false}
           />
-          <YAxis 
-            dataKey="name" 
-            type="category" 
-            stroke="#666" 
-            fontSize={12} 
-            tickLine={false} 
-            axisLine={false} 
-            width={100} // Give space for labels
+          <YAxis
+            dataKey="name"
+            type="category"
+            stroke="#9ca3af"
+            fontSize={12}
+            tickLine={false}
+            axisLine={false}
+            width={120}
           />
-          <Tooltip 
+          <Tooltip
             content={CustomTooltip}
-            cursor={{ fill: '#e5e7eb', opacity: 0.6 }} // Light gray background on hover
+            cursor={{ fill: "#e5e7eb", opacity: 0.6 }}
           />
-          <Bar dataKey="count">
-            {data.map((entry, index) => (
-              <Bar key={`bar-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Bar>
+          {/* Single Bar with pastel fill */}
+          <Bar
+            dataKey="count"
+            fill={COLORS[2]} // pick one color or cycle manually
+            radius={[6, 6, 6, 6]} // rounded corners
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>
