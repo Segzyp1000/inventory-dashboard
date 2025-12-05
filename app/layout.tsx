@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      // Standard browser favicon (.ico format → required!)
-      { url: "/favicon.ico" },
+      // Standard browser favicon (.ico format is preferred, but .png works too)
+      { url: "/logo.png" },
 
       // Optional PNG favicon
       { url: "/logo.png", type: "image/png" },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
     // Shortcut icon
     shortcut: [
-      { url: "/favicon.ico" },
+      { url: "/logo.png" },
     ],
   },
 };

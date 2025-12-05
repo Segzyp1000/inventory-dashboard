@@ -6,31 +6,12 @@ import MonthlyValueAreaChart from "@/components/MonthlyValueAreaChart"
 import { prisma } from "@/lib/prisma";
 import { Package, BarChart3 } from "lucide-react"; // Removed Settings import
 
-
-// Define the shape of the data returned from Prisma
-// interface ProductData {
-//   id: string;
-//   name: string;
-//   price: string | number;
-//   quantity: number;
-//   createdAt: Date;
-//   lowStockAt?: number;
-// }
-
-// Metric Card Component
 interface MetricCardProps {
   title: string;
   value: string;
   icon: React.ReactElement;
   description: string;
 }
-
-// interface  StockLevelBarChart  {
-//   price: string | number;
-//   quantity: number;
-//   lowStockAt?: number;
-//   p?: number;
-// }
 
 function MetricCard({ title, value, icon, description }: MetricCardProps) {
   return (
