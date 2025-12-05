@@ -86,7 +86,7 @@ export default function StockLevelBarChart({
               } else if (entry.name === "Low Stock (≤5)") {
                 color = "#e9fa02"; // yellow
               } else if (entry.count > 5) {
-                color = "#0edb07"; // green
+                color = "#479c30"; // green
               }
 
               return <Cell key={`cell-${index}`} fill={color} />;

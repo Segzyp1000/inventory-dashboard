@@ -21,20 +21,20 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       // Standard browser favicon (.ico format is preferred, but .png works too)
-      { url: "/logo.png" },
+      { url: "./logo.png" },
 
       // Optional PNG favicon
-      { url: "/logo.png", type: "image/png" },
+      { url: "./logo.png", type: "image/png" },
     ],
 
     // Apple devices (home screen icons)
     apple: [
-      { url: "/logo.png", sizes: "180x180", type: "image/png" },
+      { url: "./logo.png", sizes: "180x180", type: "image/png" },
     ],
 
     // Shortcut icon
     shortcut: [
-      { url: "/logo.png" },
+      { url: "./logo.png" },
     ],
   },
 };
