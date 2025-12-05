@@ -17,12 +17,7 @@ interface StockLevelData {
 }
 
 // Softer pastel-like colors
-const COLORS = [
-  "#fecaca", // light red
-  "#fef08a", // light yellow
-  "#bfdbfe", // light blue
-  "#a7f3d0", // light green
-];
+
 
 export default function StockLevelBarChart({
   data,
@@ -85,7 +80,7 @@ export default function StockLevelBarChart({
                 color = "#eb0c17"; // red
               } else if (entry.name === "Low Stock (≤5)") {
                 color = "#e9fa02"; // yellow
-              } else if (entry.count > 5) {
+              } else if (entry.name === "In Stock") {
                 color = "#479c30"; // green
               }
 
