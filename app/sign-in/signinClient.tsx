@@ -7,7 +7,7 @@ import Link from "next/link";
 
 // Header component
 function AuthHeader({ mode }: { mode: "signin" | "signup" }) {
-  const title = mode === "signin" ? "Access ShielfSync" : "Join ShielfSync";
+  const title = mode === "signin" ? "Access ShelfSync" : "Join ShelfSync";
   
 
   return (

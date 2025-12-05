@@ -8,10 +8,11 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Cell,
 } from "recharts";
 
 interface StockLevelData {
-  name: string;  // e.g., 'Out of Stock'
+  name: string; // e.g., 'Out of Stock'
   count: number; // number of products
 }
 
@@ -23,14 +24,19 @@ const COLORS = [
   "#a7f3d0", // light green
 ];
 
-export default function StockLevelBarChart({ data }: { data: StockLevelData[] }) {
+export default function StockLevelBarChart({
+  data,
+}: {
+  data: StockLevelData[];
+}) {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className="p-3 bg-white border border-gray-200 rounded-lg shadow-md text-sm">
           <p className="font-semibold text-gray-800">{label}</p>
           <p className="text-gray-600">
-            Count: <span className="font-bold">{payload[0].value}</span> products
+            Count: <span className="font-bold">{payload[0].value}</span>{" "}
+            products
           </p>
         </div>
       );
@@ -46,7 +52,11 @@ export default function StockLevelBarChart({ data }: { data: StockLevelData[] })
           margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
           layout="vertical"
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" horizontal={false} />
+          <CartesianGrid
+            strokeDasharray="3 3"
+            stroke="#f3f4f6"
+            horizontal={false}
+          />
           <XAxis
             type="number"
             stroke="#9ca3af"
@@ -67,12 +77,21 @@ export default function StockLevelBarChart({ data }: { data: StockLevelData[] })
             content={CustomTooltip}
             cursor={{ fill: "#e5e7eb", opacity: 0.6 }}
           />
-          {/* Single Bar with pastel fill */}
-          <Bar
-            dataKey="count"
-            fill={COLORS[2]} // pick one color or cycle manually
-            radius={[6, 6, 6, 6]} // rounded corners
-          />
+          <Bar dataKey="count" radius={[6, 6, 6, 6]}>
+            {data.map((entry, index) => {
+              let color = "#bfdbfe"; // default light blue
+
+              if (entry.name === "Out of Stock") {
+                color = "#eb0c17"; // red
+              } else if (entry.name === "Low Stock (≤5)") {
+                color = "#e9fa02"; // yellow
+              } else if (entry.count > 5) {
+                color = "#0edb07"; // green
+              }
+
+              return <Cell key={`cell-${index}`} fill={color} />;
+            })}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
