@@ -1,54 +1,57 @@
-import AppLayout from "@/components/AppLayout";
+"use client";
 
+import Logo from "../logo.png";
+import Image from "next/image";
 
-export default function InventoryLoading() {
+/**
+ * InventoryLoading Component
+ * A centered branded spinner for the ShelfSync inventory page.
+ * Note: Local imports are mocked to ensure the preview renders correctly.
+ */
+export default function App() {
   return (
-    
-      <AppLayout currentPath="/inventory">
-        <div className="mb-8">
-          {/* Animated Header Placeholder */}
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 rounded w-48 mb-3"></div>
-            <div className="h-4 bg-gray-200 rounded w-72"></div>
-          </div>
+    /* Mocking layout container for preview */
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      <div className="relative flex flex-col items-center">
+        
+        {/* Main Spinner Container */}
+        <div className="relative flex items-center justify-center">
           
-          {/* Search Bar Skeleton */}
-          <div className="mt-8 flex gap-2">
-            <div className="h-10 bg-gray-200 rounded-lg grow animate-pulse"></div>
-            <div className="w-24 h-10 bg-purple-200 rounded-lg animate-pulse"></div>
-          </div>
-
-          {/* Table Container Skeleton */}
-          <div className="mt-5 overflow-hidden border rounded-lg shadow-lg bg-white p-6">
-            <div className="animate-pulse">
-              {/* Table Header Row Skeleton */}
-              <div className="flex justify-between py-3 px-2 border-b border-gray-100 mb-4">
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-                <div className="h-4 bg-gray-300 rounded w-16"></div>
-              </div>
-
-              {/* Table Body Rows Skeleton (5 rows) */}
-              {Array(5).fill(0).map((_, index) => (
-                <div 
-                  key={index} 
-                  className={`flex justify-between py-4 px-2 ${index > 0 ? 'mt-3' : ''}`}
-                >
-                  <div className="h-5 bg-gray-200 rounded w-1/5 mr-4"></div>
-                  <div className="h-5 bg-gray-200 rounded w-1/6 mr-4"></div>
-                  <div className="h-5 bg-gray-200 rounded w-1/12 mr-4"></div>
-                  <div className="h-5 bg-gray-200 rounded w-1/12 mr-4"></div>
-                  <div className="h-5 bg-gray-200 rounded w-1/6 mr-4"></div>
-                  <div className="h-5 bg-purple-100 rounded w-1/12"></div>
-                </div>
-              ))}
+          {/* The Spinning Ring */}
+          <div className="w-24 h-24 rounded-full border-4 border-gray-200 border-t-purple-600 animate-spin"></div>
+          
+          {/* Centered Logo (Static inside the spinning ring) */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
+              <Image
+                src={Logo}
+                alt="ShelfSync" 
+                className="w-full h-full object-contain"
+                
+                // Fallback for preview environments
+                onError={(e) => { 
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://api.dicebear.com/7.x/initials/svg?seed=SS&backgroundColor=7c3aed'; 
+                }}
+              />
+              
             </div>
           </div>
         </div>
-        </AppLayout>
-      
+
+        {/* Status Text */}
+        <div className="mt-8 text-center space-y-2">
+          <h2 className="text-xl font-bold text-gray-800 tracking-tight">
+            ShelfSync
+          </h2>
+          <div className="flex items-center space-x-2">
+            <span className="flex h-2 w-2 rounded-full bg-purple-600 animate-ping"></span>
+            <p className="text-sm text-gray-500 font-medium uppercase tracking-widest">
+              Updating Inventory...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
