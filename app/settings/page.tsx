@@ -13,7 +13,7 @@ export default async function SettingsPage() {
           <h1 className="md:text-3xl text-2xl font-semibold text-gray-900 tracking-tight leading-tight">
             Settings
           </h1>
-          <p className="mt-2  text-[14px] md:text-[18px] text-gray-600 max-w-2xl">
+          <p className="text-gray-600 text-[14px] md:text-[18px]">
             Manage your account settings and preferences.
           </p>
         </div>

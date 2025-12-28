@@ -11,7 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import Logo from "../public/logo.png";
+import Logo from "../logo.png"
 import { UserButton } from "@stackframe/stack";
 
 interface NavItem {

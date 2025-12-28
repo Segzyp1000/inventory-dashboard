@@ -24,7 +24,7 @@ export default async function InventoryPage() {
           <div>
         <h1 className="md:text-3xl text-2xl font-semibold ">Inventory</h1>
         <span>
-        <p className="text-sm font-light text-[14px] md:text-[18px]">Manage your product and track inventory</p>
+        <p className="text-gray-600 text-[14px] md:text-[18px]">Manage your product and track inventory</p>
         </span>
         </div>
         <Link href="/add-product">
