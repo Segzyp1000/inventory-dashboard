@@ -64,7 +64,7 @@ export default function Sidebar({
   const handleDesktopToggle = () => setIsCollapsed(!isCollapsed);
 
   return (
-    <div
+     <div
       className={`
         fixed left-0 top-0 bg-gray-900 text-white min-h-screen z-50 
         shadow-2xl transition-all duration-300 ease-in-out flex flex-col justify-between
@@ -74,14 +74,31 @@ export default function Sidebar({
         padding: isIconOnly ? "1rem 0.5rem" : "1.5rem 1.5rem",
       }}
     >
+      {/* COLLAPSE BUTTON - Resting on the sidebar edge */}
+      {!isMobile && (
+        <button
+          onClick={handleDesktopToggle}
+          className="absolute -right-3 top-12 flex items-center justify-center w-6 h-6 bg-indigo-600 border border-indigo-500 rounded-full shadow-lg hover:bg-indigo-500 transition-all z-60 group/btn cursor-pointer"
+        >
+          {isCollapsed ? (
+            <ChevronRight className="w-3.5 h-3.5 text-white" />
+          ) : (
+            <ChevronLeft className="w-3.5 h-3.5 text-white" />
+          )}
+          <span className={`${tooltipStyle} group-hover/btn:opacity-100`}>
+            {isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          </span>
+        </button>
+      )}
+
       <div className="flex-1">
-        {/* Logo */}
+        {/* Logo Container */}
         <div
           className={`flex items-center space-x-3 mb-8 border-b border-gray-700 pb-4 relative group ${
             isTextVisible ? "" : "justify-center"
           }`}
         >
-          <Link href="/dashboard" className="flex items-center space-x-3">
+           <Link href="/dashboard" className="flex items-center space-x-3">
             <Image
               src={Logo}
               alt="Logo"
@@ -98,9 +115,6 @@ export default function Sidebar({
               </span>
             )}
           </Link>
-
-          {/* Tooltip for logo */}
-          {isIconOnly && <span className={tooltipStyle}>ShelfSync</span>}
         </div>
 
         {/* Menu Header (desktop only) */}
@@ -117,10 +131,9 @@ export default function Sidebar({
             const Icon = item.icon;
 
             return (
-              <Link
+              <a
                 key={index}
                 href={item.href}
-                aria-current={isActive ? "page" : undefined}
                 className={`
                   group relative flex items-center rounded-lg transition-all duration-200 ease-in-out
                   ${isIconOnly ? "justify-center px-0 py-3" : "space-x-3 px-4 py-2"}
@@ -138,34 +151,14 @@ export default function Sidebar({
                 )}
 
                 {isIconOnly && <span className={tooltipStyle}>{item.name}</span>}
-              </Link>
+              </a>
             );
           })}
         </nav>
       </div>
 
       {/* Bottom Section */}
-      <div className="flex flex-col">
-        {/* Collapse button (desktop only) */}
-        {!isMobile && (
-          <button
-            onClick={handleDesktopToggle}
-            className="group relative flex justify-center items-center h-10 mt-4 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-all duration-300"
-          >
-            {isCollapsed ? (
-              <ChevronRight className="w-4 h-4" />
-            ) : (
-              <ChevronLeft className="w-4 h-4" />
-            )}
-
-            <span className={tooltipStyle}>
-              {isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-            </span>
-          </button>
-        )}
-
-        {/* User Button */}
-        <div className="pt-4 border-t border-gray-700 mt-4 group relative">
+      <div className="pt-4 border-t border-gray-700 mt-4 group relative">
           <div
             className={`flex items-center text-sm text-gray-300 ${
               isIconOnly ? "justify-center" : "justify-start"
@@ -176,7 +169,6 @@ export default function Sidebar({
 
           {isIconOnly && <span className={tooltipStyle}>User & Settings</span>}
         </div>
-      </div>
     </div>
   );
 }

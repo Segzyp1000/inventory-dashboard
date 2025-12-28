@@ -20,16 +20,19 @@ export default async function InventoryPage() {
 
   return (
       <AppLayout currentPath="/inventory" >
-        <div  className="mb-4 text-gray-800">
+        <div  className="mb-4 text-gray-800 flex justify-between items-center flex-wrap gap-4">
+          <div>
         <h1 className="md:text-3xl text-2xl font-semibold ">Inventory</h1>
         <span>
-        <p className=" text-[14px] md:text-[18px]">Manage your product and track inventory</p>
-        <Link href="/add-product">
-        <button className="bg-gray-800 text-gray-200 p-1.5 text-[12px] md:text-[16px] cursor-pointer hover:bg-gray-200 hover:text-gray-600 rounded-lg mt-2 ">Add product</button>
-        </Link>
+        <p className="text-sm font-light text-[14px] md:text-[18px]">Manage your product and track inventory</p>
         </span>
         </div>
-        <div className="bg-white border rounded-lg p-4">
+        <Link href="/add-product">
+        <button   className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 space-y cursor-pointer">Add product</button>
+        </Link>
+      
+        </div>
+        <div className="bg-white border rounded-lg p-4 ">
           <InventoryTable initialProducts={products} />
         </div>
       </AppLayout>
