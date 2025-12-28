@@ -1,4 +1,3 @@
-
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackClientApp } from "../stack/client";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -18,8 +17,6 @@ export const metadata = {
   title: "ShelfSync - Inventory Management",
   description: "A simple inventory management application built with Next.js",
   icons: {
-    // Changing paths to absolute root paths (/logo.png) instead of relative (./logo.png)
-    // is the most common fix for the "Vercel logo" persistence issue.
     icon: [
       { url: "/logo.png" },
       { url: "/logo.png", sizes: "32x32", type: "image/png" },
@@ -29,14 +26,12 @@ export const metadata = {
   },
 };
 
- 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-       <link rel="icon" href="./logo.png" sizes="any" />
-        <link rel="apple-touch-icon" href="./logo.png" />
+       <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <StackProvider app={stackClientApp}>
