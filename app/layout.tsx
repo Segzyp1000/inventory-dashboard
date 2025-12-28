@@ -14,34 +14,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "ShelfSync - Inventory Management",
   description: "A simple inventory management application built with Next.js",
-
   icons: {
-    icon: [
-      // Standard browser favicon (.ico format is preferred, but .png works too)
-      { url: "./logo.png" },
-
-      // Optional PNG favicon
-      { url: "./logo.png", type: "image/png" },
-    ],
-
-    // Apple devices (home screen icons)
-    apple: [
-      { url: "./logo.png", sizes: "180x180", type: "image/png" },
-    ],
-
-    // Shortcut icon
-    shortcut: [
-      { url: "./logo.png" },
-    ],
+    // Using simple paths is often more reliable for Next.js to detect correctly
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
 };
+
+ 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+       <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <StackProvider app={stackClientApp}>
           <StackTheme>
