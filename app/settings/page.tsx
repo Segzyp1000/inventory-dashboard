@@ -2,9 +2,9 @@ import AppLayout from "@/components/AppLayout";
 import { getCurrentUser } from "@/lib/auth";
 import { AccountSettings } from "@stackframe/stack";
 
-export default async function SettingsPage() {
+export default async function SettingsPage() { 
   // Assuming getCurrentUser is a server function
-  const user = await getCurrentUser(); 
+  const user = await getCurrentUser();  
 
   return (    
       <AppLayout currentPath="/settings" >
@@ -19,7 +19,7 @@ export default async function SettingsPage() {
         </div>
 
         {/* Content Container for AccountSettings */}
-        <div className="max-w-7xl lg:flex flex-col  mx-auto flex-wrap px-4 sm:px-6 lg:px-8 mb-16 ">
+        <div className="grid-cols-2 lg:grid-cols-1 px-4 sm:px-6 lg:px-8 mb-16 ">
           {/* White card container for visual separation and depth, giving the content a clean backdrop. */}
           <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 transform hover:shadow-3xl transition-all duration-300 ease-in-out">
             {/* The AccountSettings component is styled by the custom dark gray theme set in globals.css. */}
