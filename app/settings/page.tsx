@@ -19,7 +19,7 @@ export default async function SettingsPage() {
         </div>
 
         {/* Content Container for AccountSettings */}
-        <div className="max-w-7xl overflown-wrap mx-auto">
+        <div className="max-w-7xl lg:flex flex-col justify-center mx-auto flex-wrap px-4 sm:px-6 lg:px-8 mb-16 ">
           {/* White card container for visual separation and depth, giving the content a clean backdrop. */}
           <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 transform hover:shadow-3xl transition-all duration-300 ease-in-out">
             {/* The AccountSettings component is styled by the custom dark gray theme set in globals.css. */}
