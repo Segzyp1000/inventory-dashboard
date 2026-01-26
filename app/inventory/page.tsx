@@ -27,9 +27,15 @@ export default async function InventoryPage() {
         <p className="text-gray-600 text-[14px] md:text-[18px]">Manage your product and track inventory</p>
         </span>
         </div>
-        <Link href="/add-product">
-        <button   className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 space-y cursor-pointer">Add product</button>
-        </Link>
+       <Link href="/add-product">
+            <button className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-md active:scale-95">
+              {/* Plus Icon */}
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Add Product</span>
+            </button>
+          </Link>
       
         </div>
         <div className="bg-white border rounded-lg p-4 ">
