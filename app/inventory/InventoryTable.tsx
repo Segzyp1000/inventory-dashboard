@@ -76,7 +76,6 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
             <div className="flex justify-between items-start mb-4">
               <div>
                 <h3 className="font-bold text-slate-900 leading-tight">{product.name}</h3>
-                <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-widest">{product.sku || "No SKU"}</p>
               </div>
               <button onClick={() => setShowDeleteModal(product.id)} className="text-slate-400 hover:text-red-500 transition-colors p-1">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,7 +83,7 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
                 </svg>
               </button>
             </div>
-            <div className="grid grid-cols-3 gap-2 border-t border-slate-50 pt-4">
+            <div className="grid grid-cols-1 gap-2 border-t border-slate-50 pt-4">
               <div>
                 <span className="text-slate-400 text-[10px] uppercase font-bold block mb-1">Price</span>
                 <span className="font-bold text-slate-900">${Number(product.price).toFixed(2)}</span>
@@ -104,7 +103,6 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
           <thead className="bg-slate-50 border-b border-slate-200">
             <tr>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Product Name</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">SKU</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Price</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">In Stock</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">Remove</th>
@@ -114,7 +112,6 @@ export default function InventoryTable({ initialProducts }: { initialProducts: P
             {paginated.map((product) => (
               <tr key={product.id} className="hover:bg-slate-50/50 transition-colors group">
                 <td className="px-6 py-4 font-semibold text-slate-900">{product.name}</td>
-                <td className="px-6 py-4 text-slate-500 font-mono text-sm">{product.sku || "—"}</td>
                 <td className="px-6 py-4 font-medium text-slate-700">${Number(product.price).toFixed(2)}</td>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-2">
